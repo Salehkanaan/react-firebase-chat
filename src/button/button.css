@@ -1,0 +1,229 @@
+@keyframes colorChange {
+    0% { color: #ff0000; }   /* Red */
+    20% { color: #00ff00; }  /* Green */
+    40% { color: #0000ff; }  /* Blue */
+    60% { color: #ffff00; }  /* Yellow */
+    80% { color: #ff00ff; }  /* Magenta */
+    100% { color: #00ffff; } /* Cyan */
+  }
+  
+  .animated-text {
+    font-size: 2em;
+    animation: colorChange 10s infinite;
+    font-weight: bold;
+  }
+:root {
+    --hue: 190deg;
+    --sat: 50%;
+    --blur: 0px;
+  }
+  #button  {
+  
+    --hue2: calc(var(--hue) + 60deg);
+    --sat2: calc(var(--sat) + 10%);
+    --clr: hsl(var(--hue) var(--sat) 90%);  
+    --clr2: hsl(var(--hue2) var(--sat2) 85%);
+    --text: hsla(var(--hue), 70%, 10%, .9);
+    --gradoffset: 45%;
+    --gradgap: 30%;
+  }
+  
+  #button .custom {
+    --hue: 30deg;
+    --sat: 50%;
+    --hue2: 5deg;
+    --sat2: 80%;
+  }
+  
+  button {
+    margin-left: 25%;
+    @media screen and ( min-width: 660px ) {
+      font-size: 3vw;
+    }
+    
+    color: var(--text);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    background-color: var(--clr);
+    background-image:   
+      linear-gradient(180deg, 
+        var(--clr2) var(--gradgap), 
+        transparent calc(100% - var(--gradgap))
+      );
+    background-repeat: no-repeat;
+    background-position: center var(--gradoffset);
+    background-size: 100% 200%;
+    padding: 1.1em 1.5em;
+    border-radius: 2em;
+    border: none;
+    
+    box-shadow: 
+      0 -0.5em 0.5em transparent,
+      0 0.5em 0.5em transparent,
+      0 0.25em 0.3em -0.2em hsla(var(--hue), var(--sat), 50%, 0.46), 
+      0 0.25em 0.75em hsla(var(--hue), calc(var(--sat) - 10%), 40%, 0.3);
+  
+    position: relative;
+    transition: all 0.5s ease;
+    outline: none;
+  
+    &::before, &::after {
+      content: "";
+      inset: 0;
+      position: absolute;
+      border-radius: 5em;
+    }
+    
+    
+    &::before {
+      background-image: 
+        radial-gradient(ellipse, 
+          hsla(var(--hue), 100%, 90%, .8) 20%,
+          transparent 50%,
+          transparent 200%
+        ),
+        linear-gradient(90deg, 
+          hsl(0deg, 0%, 25%) -10%, 
+          transparent 30%, 
+          transparent 70%, 
+          hsl(0deg, 0%, 25%) 110%
+        );
+      box-shadow: 
+        inset 0 .25em .75em hsla(0deg, 0%, 0%, 0.8),
+        inset 0 -.05em .2em rgba(255, 255, 255, 0.4),
+        inset 0 -1px 3px hsla(var(--hue), 80%, 50%, .75);
+      background-blend-mode: overlay;
+      background-repeat: no-repeat;
+      background-size: 200% 80%, cover;
+      background-position: center 220%;
+      mix-blend-mode: overlay;
+      filter: blur(calc(var(--blur) * 0.5));
+    }
+    
+  
+    &::after {
+      background: linear-gradient(
+        180deg, 
+        hsla(var(--hue2),100%,90%,.9), 
+        hsla(var(--hue2),calc(var(--sat2)*0.7),50%,.75) 40%, 
+        transparent 80%
+      );
+      top: 0.075em;
+      left: 0.75em;
+      right: 0.75em;
+      bottom: 1.4em;
+      filter: blur(var(--blur));
+      mix-blend-mode: screen;
+    }
+    
+    &:hover,
+    &:active,
+    &:focus {
+      outline: none;
+      box-shadow: 
+        0 -0.2em 1em hsla(var(--hue2), 70%, 80%, 0.3),
+        0 0.5em 1.5em hsla(var(--hue), 70%, 80%, 0.5),
+        0 0.25em 0.3em -0.2em hsl(var(--hue) 90% 70%), 
+        0 0.25em 0.5em hsla(var(--hue),20%,30%, 0.2),
+        inset 0 -2px 2px rgba(255,255,255,0.2);
+      background-position: center calc( var(--gradoffset) - 0.75em );
+    }
+    
+  }
+  
+  button {
+    font-family: var(--font);
+    display: flex;
+  }
+  
+  #button {
+    display: grid;
+    gap: 2vw;
+    @media screen and (min-width: 660px) {
+      grid-template-columns: auto auto;
+      grid-template-rows: min-content auto max-content;
+  
+    }
+  }
+  
+  h1, p {
+    grid-column: 1/-1;
+  }
+  
+  
+  #button > div {
+    position: relative;
+    border-radius: 2vw;
+    min-height: 200px;
+    background-color: hsl(var(--hue), 20%, 95%);
+    background-image: 
+      linear-gradient( 33deg, 
+        transparent 60%, 
+        var(--clr) 
+      ),
+      linear-gradient( 210deg, 
+        transparent 60%, 
+        var(--clr2) 
+      );
+    background-size: 150%;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  }
+  
+   #button {
+    height: 100%;
+    box-sizing: border-box;
+  }
+  
+  a {
+    color: #6adcf6;
+  }
+  
+  
+  #hue1 {
+    top: auto;
+    bottom: .5em;
+  }
+  
+  #sat1 {
+    top: auto;
+    bottom: .5em;
+    left: auto;
+  }
+  
+  #hue2 {
+  }
+  
+  #sat2 {
+    left: auto;
+  }
+  
+  #grad {
+    left: auto;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  #gradoff {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  #blur {
+    top: auto;
+    bottom: .5em;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .spinner path {
+    transform-origin: center;
+    animation: spin .75s infinite linear
+  }
+  
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg)
+    }
+  }

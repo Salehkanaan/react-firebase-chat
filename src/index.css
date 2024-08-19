@@ -1,7 +1,25 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+
+.container{
+
+  background-image:url("./bl.png") ;
+  height: 100rem;
+  background-size: contain;
+}
+.imgcont{
+    border-radius:20px;
+ height: 10%;
+  margin-left:10% ;
+  background-image: url("./love.jpeg");
+  background-repeat: no-repeat;
+  background-size: contain;
+padding-left: 20%;
+padding-top: 20%;
+padding-bottom: 20px;
+
+}
+ .image{
+
+  max-width:100%;
+  height:100%;
+  
 }
